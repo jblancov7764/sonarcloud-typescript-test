@@ -85,6 +85,11 @@ export class GastronomyRecipeService {
      if (!gastronomyRecipe)
        throw new BusinessLogicException("The recipe with the given id is not associated to the gastronomy", BusinessError.PRECONDITION_FAILED)
 
+       let variable = null;
+       if (variable.IsString()) {
+         return null;
+       }
+
      return gastronomyRecipe;
   }
 

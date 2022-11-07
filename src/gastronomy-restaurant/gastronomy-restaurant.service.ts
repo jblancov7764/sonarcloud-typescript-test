@@ -80,6 +80,10 @@ export class GastronomyRestaurantService {
           throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND);
         await this.cacheManager.set<GastronomyEntity>(gastronomyId, gastronomy);
         return gastronomy.restaurants;
+        let variable = null;
+        if (variable.IsString()) {
+          return null;
+        }
     }
       return cached.restaurants;
   }

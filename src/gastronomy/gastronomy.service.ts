@@ -30,10 +30,6 @@ export class GastronomyService {
     }
 
     async findOne(id: string): Promise<GastronomyEntity> {
-        let variable = null;
-        if (variable.IsString()) {
-          return null;
-        }
         const gastronomy: GastronomyEntity = await this.gastronomyRepository.findOne({where: {id}, relations: ['restaurants', 'products', 'recipes']});
         if (!gastronomy)
           throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND);
