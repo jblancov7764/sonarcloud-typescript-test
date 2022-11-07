@@ -1,0 +1,123 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RestaurantEntity {
+  id: String!
+  name: String!
+  city: String!
+  country: String!
+  michellinStars: Float!
+  lastMichellinStarDate: DateTime!
+  gastronomies: [GastronomyEntity!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ProductEntity {
+  id: String!
+  name: String!
+  description: String!
+  history: String!
+  category: String!
+  gastronomy: GastronomyEntity!
+}
+
+type RecipeEntity {
+  id: String!
+  name: String!
+  description: String!
+  photo: String!
+  steps: String!
+  video: String!
+  gastronomy: [GastronomyEntity!]!
+}
+
+type GastronomyEntity {
+  id: String!
+  name: String!
+  description: String!
+  country: String!
+  restaurants: [RestaurantEntity!]!
+  products: [ProductEntity!]!
+  recipes: [RecipeEntity!]!
+}
+
+type Query {
+  gastronomies: [GastronomyEntity!]!
+  gastronomy(gastronomyId: String!, recipeId: String!): RecipeEntity!
+  restaurantsOfGastronomy(gastronomyId: String!): [RestaurantEntity!]!
+  restaurants: [RestaurantEntity!]!
+  restaurant(restaurantId: String!, gastronomyId: String!): GastronomyEntity!
+  products: [ProductEntity!]!
+  product(id: String!): ProductEntity!
+  getGastronomyProducts(gastronomyId: String!): [ProductEntity!]!
+  getGastronomyProduct(gastronomyId: String!, productId: String!): ProductEntity!
+  recipes: [RecipeEntity!]!
+  recipe(id: String!): RecipeEntity!
+  gastronomiesOfRestaurant(restaurantId: String!): [GastronomyEntity!]!
+  recipesOfGastronomy(gastronomyId: String!): [RecipeEntity!]!
+}
+
+type Mutation {
+  createGastronomy(gastronmy: GastronomyDto!): GastronomyEntity!
+  updateGastronomy(id: String!, gastronmy: GastronomyDto!): GastronomyEntity!
+  deleteGastronomy(id: String!): String!
+  addRestaurantToGastronomy(gastronomyId: String!, restaurantId: String!): GastronomyEntity!
+  updateRestaurantsOfGastronomy(gastronomyId: String!, restaurants: [RestaurantDto!]!): GastronomyEntity!
+  deleteRestaurantoOfGastronomy(gastronomyId: String!, restaurantId: String!): String!
+  createRestaurant(restaurant: RestaurantDto!): RestaurantEntity!
+  updateRestaurant(id: String!, restaurant: RestaurantDto!): RestaurantEntity!
+  deleteRestaurant(id: String!): String!
+  createProduct(product: ProductDto!): ProductEntity!
+  updateProduct(id: String!, product: ProductDto!): ProductEntity!
+  deleteProduct(id: String!): String!
+  addGastronomyProduct(gastronomyId: String!, productId: String!): GastronomyEntity!
+  updateGastronomyProduct(gastronomyId: String!, products: [ProductsDto!]!): GastronomyEntity!
+  deleteGastronomyProduct(gastronomyId: String!, productId: String!): String!
+  createRecipe(recipe: RecipeDto!): RecipeEntity!
+  updateRecipe(id: String!, recipe: RecipeDto!): RecipeEntity!
+  deleteRecipe(id: String!): String!
+  addGastronomyToRestaurant(restaurantId: String!, gastronomyId: String!): RestaurantEntity!
+  updateGastronomiesOfRestaurant(restaurantId: String!, gastronomies: [GastronomyDto!]!): RestaurantEntity!
+  deleteGastronomyoOfRestaurant(restaurantId: String!, gastronomyId: String!): String!
+  addRecipeToGastronomy(gastronomyId: String!, recipeId: String!): GastronomyEntity!
+  updateRecipesOfGastronomy(gastronomyId: String!, recipes: [RecipeDto!]!): GastronomyEntity!
+  deleteRecipeoOfGastronomy(gastronomyId: String!, recipeId: String!): String!
+}
+
+input GastronomyDto {
+  name: String!
+  description: String!
+  country: String!
+}
+
+input RestaurantDto {
+  name: String!
+  city: String!
+  country: String!
+  michellinStars: Float!
+  lastMichellinStarDate: DateTime!
+}
+
+input ProductDto {
+  name: String!
+  description: String!
+  history: String!
+  category: String!
+}
+
+input ProductsDto {
+  id: String!
+}
+
+input RecipeDto {
+  name: String!
+  description: String!
+  photo: String!
+  steps: String!
+  video: String!
+}

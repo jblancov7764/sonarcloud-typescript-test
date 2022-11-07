@@ -1,0 +1,37 @@
+/* eslint-disable prettier/prettier */
+export enum Permission {
+    ALL_PERMISSIONS = 'all',
+    READ_GASTRONOMIES = 'read:gastronomies',
+    READ_GASTRONOMY = 'read:gastronomy',
+    CREATE_GASTRONOMY = 'create:gastronomy',
+    UPDATE_GASTRONOMY = 'update:gastronomy',
+    DELETE_GASTRONOMY = 'delete:gastronomy',
+    READ_GASTRONOMY_RESTAURANTS = 'read:gastronomy-restaurants',
+    READ_GASTRONOMY_RESTAURANT = 'read:gastronomy-restaurant',
+    CREATE_GASTRONOMY_RESTAURANT = 'create:gastronomy-restaurant',
+    UPDATE_GASTRONOMIES_RESTAURANT = 'update:gastronomies-restaurant',
+    DELETE_GASTRONOMY_RESTAURANT  = 'delete:gastronomy-restaurant',
+
+    READ_RESTAURANTS = 'read:restaurants',
+    READ_RESTAURANT = 'read:restaurant',
+    CREATE_RESTAURANT = 'create:restaurant',
+    UPDATE_RESTAURANT = 'update:restaurant',
+    DELETE_RESTAURANT = 'delete:restaurant',
+    READ_RESTAURANT_GASTRONOMIES = 'read:restaurant-gastronomies',
+    READ_RESTAURANT_GASTRONOMY = 'read:restaurant-gastronomy',
+    CREATE_RESTAURANT_GASTRONOMY = 'create:restaurant-gastronomy',
+    UPDATE_RESTAURANTS_GASTRONOMY = 'update:restaurants-gastronomy',
+    DELETE_RESTAURANT_GASTRONOMY  = 'delete:restaurant-gastronomy',
+
+    READ_PRODUCT = 'read:product',
+    READ_PRODUCTS = 'read:products',
+    CREATE_PRODUCT = 'create:product',
+    UPDATE_PRODUCT = 'update:product',
+    DELETE_PRODUCT = 'delete:product',
+
+    READ_RECIPES = 'read:recipes',
+    READ_RECIPE = 'read:recipe',
+    CREATE_RECIPE = 'create:recipe',
+    UPDATE_RECIPE = 'update:recipe',
+    DELETE_RECIPE = 'delete:recipe',
+  }

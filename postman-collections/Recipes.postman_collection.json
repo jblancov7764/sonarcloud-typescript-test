@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "208f08ec-29f9-4138-9e75-51763ed72977",
+		"name": "Recipes",
+		"description": "This collection describes the resource Recipes in the API Gastronomic Culture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23051980"
+	},
+	"item": [
+		{
+			"name": "Add a recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"recipe_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Chicken Parmigiana\",\n   \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n   \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n   \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n   \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recipes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes"
+					]
+				},
+				"description": "This request creates a Recipe. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add a recipe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Chicken Parmigiana\",\n   \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n   \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n   \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n   \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recipes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"name\": \"Chicken Parmigiana\",\n    \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n    \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n    \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n    \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all recipes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of recipes > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes"
+					]
+				},
+				"description": "This request retrieves all the recipes. The API returns an array with the information."
+			},
+			"response": [
+				{
+					"name": "Get all recipes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recipes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n        \"name\": \"Italian Meatballs\",\n        \"description\": \"Quick and easy homemade Italian meatballs are juicy, flavourful, and delicious. They are seasoned with herbs, garlic, and Parmesan cheese, pan-seared in olive oil, and simmered in a rich and savoury tomato sauce. The best part? You can make these Italian meatballs in just 30-minutes, making them the perfect weeknight dinner. Serve them on their own, over pasta, or in a meatball sandwich. Plus, you can make a bigger batch and freeze any extras for an even quicker meal on a lazy day.\",\n        \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2021/03/italian-meatballs-8.jpg\",\n        \"steps\": \"1. Prepare the meatballs. In a large mixing bowl, combine beef with breadcrumbs, milk, egg, garlic, parsley, Parmesan, Italian seasoning, salt and pepper. Mix well and form the mixture into a uniform consistency. Take 2 spoonfuls of the beef mixture at a time and roll them into meatballs. Set aside. 2. Cook the meatballs. Heat olive oil in a cast-iron skillet or shallow saucepan over medium-high heat for 2 minutes until the hot oil sizzles. Slowly add the meatballs and gently stir to cook until browned on all sides, about 6 to 8 minutes. Make sure to stir gently to prevent meatballs from disintegrating. Transfer the meatballs to a plate and set aside (Note that the meatballs are not fully cooked at this point).  3. Make the tomato sauce. In the same skillet, add onion and garlic and sauté until fragrant, about 1 minute. Stir in crushed tomatoes, tomato paste and bay leaves, and season with salt and pepper. 4. Add meatballs and simmer. Return the meatballs to the skillet and bring the sauce mixture to a simmer over medium heat, stirring occasionally. Cover the lid and let it simmer for 8-10 minutes until the meatballs are fully cooked. 5. Serve. Sprinkle with extra Parmesan if desired and serve immediately over pasta, rice, or mashed potatoes.\",\n        \"video\": \"https://www.youtube.com/watch?v=CFaavoGtP_I\"\n    },\n    {\n        \"id\": \"14f05fgfd0e-1275-11ed-861d-0242ac120032\",\n        \"name\": \"Easy Meat Lasagna\",\n        \"description\": \"Classic easy meat lasagna is the ultimate Italian comfort food that we all know and love. Layers of tender lasagna, meaty tomato sauce, a creamy cheese filling, with extra melted cheese on top, and a perfect, crispy crackly crust. It's super easy to make this delicious and comforting meal, can be make it ahead of time, and freezes beautifully.\",\n        \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-meat-lasagna-2.jpg\",\n        \"steps\": \"1. Cook the lasagna noodles: Bring a large pot of water to a boil over medium high heat. Add lasagna noodles, olive oil and salt and cook until al dente (fully cooked but still firm), or according to package directions, about 10 minutes. Rinse the noodles under cold water to stop the cooking process and set aside in the pot. 2. Prepare the meat sauce: Heat oil in a large pot or Dutch oven for 2 minutes over medium-high heat until the oil is sizzling hot. Add ground beef and cook for 5-7 minutes until browned. Add onion and garlic. Stir well to combine and continue cooking for 3-4 minutes until tender. Pour tomato sauce, tomato paste, salt and parsley. Stir well to mix and bring the meat sauce to a simmer. Turn the heat down to low and let it simmer for 10 minutes uncovered. Set aside. 3. Prepare the cheese mixture: In a medium bowl, combine ricotta cheese, 1 cup mozzarella, ¼ cup Parmesan, beaten egg, and parsley. Stir well to combine together.\",\n        \"video\": \"https://www.youtube.com/watch?v=VkQajdYciW0\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get one recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipes/{{recipe_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes",
+						"{{recipe_id}}"
+					]
+				},
+				"description": "This request retrieves a recipe by a given ID. The API returns a JSON object with the information."
+			},
+			"response": [
+				{
+					"name": "Get one recipe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recipes/{{recipe_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes",
+								"{{recipe_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"name\": \"Italian Meatballs\",\n    \"description\": \"Quick and easy homemade Italian meatballs are juicy, flavourful, and delicious. They are seasoned with herbs, garlic, and Parmesan cheese, pan-seared in olive oil, and simmered in a rich and savoury tomato sauce. The best part? You can make these Italian meatballs in just 30-minutes, making them the perfect weeknight dinner. Serve them on their own, over pasta, or in a meatball sandwich. Plus, you can make a bigger batch and freeze any extras for an even quicker meal on a lazy day.\",\n    \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2021/03/italian-meatballs-8.jpg\",\n    \"steps\": \"1. Prepare the meatballs. In a large mixing bowl, combine beef with breadcrumbs, milk, egg, garlic, parsley, Parmesan, Italian seasoning, salt and pepper. Mix well and form the mixture into a uniform consistency. Take 2 spoonfuls of the beef mixture at a time and roll them into meatballs. Set aside. 2. Cook the meatballs. Heat olive oil in a cast-iron skillet or shallow saucepan over medium-high heat for 2 minutes until the hot oil sizzles. Slowly add the meatballs and gently stir to cook until browned on all sides, about 6 to 8 minutes. Make sure to stir gently to prevent meatballs from disintegrating. Transfer the meatballs to a plate and set aside (Note that the meatballs are not fully cooked at this point).  3. Make the tomato sauce. In the same skillet, add onion and garlic and sauté until fragrant, about 1 minute. Stir in crushed tomatoes, tomato paste and bay leaves, and season with salt and pepper. 4. Add meatballs and simmer. Return the meatballs to the skillet and bring the sauce mixture to a simmer over medium heat, stirring occasionally. Cover the lid and let it simmer for 8-10 minutes until the meatballs are fully cooked. 5. Serve. Sprinkle with extra Parmesan if desired and serve immediately over pasta, rice, or mashed potatoes.\",\n    \"video\": \"https://www.youtube.com/watch?v=CFaavoGtP_I\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The recipe with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request retrieves a recipe by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Get an invalid recipe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/recipes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The recipe with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Chicken Parmesan (Parmigiana)\",\n   \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n   \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n   \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n   \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recipes/{{recipe_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes",
+						"{{recipe_id}}"
+					]
+				},
+				"description": "This request updates a recipe by a given ID. The API returns a JSON object with the updated recipe."
+			},
+			"response": [
+				{
+					"name": "Update a recipe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Chicken Parmesan (Parmigiana)\",\n   \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n   \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n   \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n   \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recipes/{{recipe_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes",
+								"{{recipe_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"name\": \"Chicken Parmesan (Parmigiana)\",\n    \"description\": \"Chicken parmesan (parmigiana) is the ultimate chicken dinner comfort food. Soft and tender chicken with a crispy, breaded coating covered in a rich tomato sauce, and topped with golden melted mozzarella and parmesan cheese. This crowd favourite is much easier to make than you might think. Serve it on its own or over a bed of spaghetti pasta\",\n    \"photo\": \"https://www.aheadofthyme.com/wp-content/uploads/2020/10/easy-chicken-parmesan-chicken-parmigiana-2.jpg\",\n    \"steps\": \"1. In a shallow plate, whisk together Panko breadcrumbs, Parmesan cheese, garlic powder and the remaining 1 teaspoon salt. Set aside. 2. Add beaten eggs into another shallow plate. 3. Dip both sides of each halved chicken breast into the eggs to evenly coat them, and then dip it into the breadcrumb mixture. The breadcrumbs will stick to the egg wash.\",\n    \"video\": \"https://www.youtube.com/watch?v=QWvCEg_R1Vc\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an invalid recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The recipe with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request updates a recipe by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Update an invalid recipe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/recipes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The recipe with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a recipie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipies/{{recipie_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipies",
+						"{{recipie_id}}"
+					]
+				},
+				"description": "This request deletes a recipe by a given ID. The API returns a 204 code."
+			},
+			"response": [
+				{
+					"name": "Delete a recipe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recipes/{{recipe_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes",
+								"{{recipe_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The recipe with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recipes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recipes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request deletes a recipe by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Delete an invalid recipe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recipes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recipes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The recipe with the given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "recipe_id",
+			"value": "48a9ab90-1276-11ed-861d-0242ac120002",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,743 @@
+{
+	"info": {
+		"_postman_id": "16bc581d-dcd1-493f-8ecf-69fe41b25dfc",
+		"name": "Gastronomies",
+		"description": "This collection describes the resource Gastronomy in the API Gastronomic Culture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23051980"
+	},
+	"item": [
+		{
+			"name": "Add a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"gastronomy_id\", data.id);",
+							"pm.collectionVariables.set(\"gastronomy_id\", data.id);",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n   \"country\": \"Italia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies"
+					]
+				},
+				"description": "This request creates a Gastronomy. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add a gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n   \"country\": \"Italia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\" : 1,\n    \"name\": \"cultura gastronómica italiana\",\n    \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"country\": \"Italia\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all gastronomies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of gastronomies > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies"
+					]
+				},
+				"description": "This request retrieves all the gastronomies. The API returns an array with the information."
+			},
+			"response": [
+				{
+					"name": "Get all gastronomies",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"cultura gastronómica italiana\",\n        \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n        \"country\": \"Italia\",\n        \"restaurants\": [\n            {\n                \"id\": 1,\n                \"name\": \"Da Quei Matti\",\n                \"city\": \"Roma\",\n                \"country\": \"Italia\",\n                \"michelin\": [\n                    {\n                        \"stars\": 1,\n                        \"date\": \"01-08-2020\"\n                    }\n                ]\n            }\n        ],\n        \"products\" : [\n            {\n                \"id\" : 1,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            },\n            {\n                \"id\" : 2,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            }\n        ],\n        \"recipes\" : [\n            {\n                \"id\" : 1,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"photo\" : \"\",\n                \"steps\" : \"\",\n                \"video\" : \"\"\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"name\": \"cultura gastronómica italiana\",\n        \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n        \"country\": \"Italia\",\n        \"restaurants\": [\n            {\n                \"id\": 2,\n                \"name\": \"Da Quei Matti\",\n                \"city\": \"Roma\",\n                \"country\": \"Italia\",\n                \"michelin\": [\n                    {\n                        \"stars\": 1,\n                        \"date\": \"01-08-2020\"\n                    }\n                ]\n            }\n        ],\n        \"products\" : [\n            {\n                \"id\" : 1,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            },\n            {\n                \"id\" : 2,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            }\n        ],\n        \"recipes\" : [\n            {\n                \"id\" : 3,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            },\n            {\n                \"id\" : 4,\n                \"name\": \"\",\n                \"description\" : \"\",\n                \"history\" : \"\",\n                \"category\" : \"\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get one gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}"
+					]
+				},
+				"description": "This request retrieves a gastronomy by a given ID. The API returns a JSON object with the information."
+			},
+			"response": [
+				{
+					"name": "Get one gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"cultura gastronómica italiana\",\n    \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"country\": \"Italia\",\n    \"restaurants\": [\n        {\n            \"id\": 1,\n            \"name\": \"Da Quei Matti\",\n            \"city\": \"Roma\",\n            \"country\": \"Italia\",\n            \"michelin\": [\n                {\n                    \"stars\": 1,\n                    \"date\": \"01-08-2020\"\n                }\n            ]\n        }\n    ],\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"\",\n            \"description\": \"\",\n            \"history\": \"\",\n            \"category\": \"\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"\",\n            \"description\": \"\",\n            \"history\": \"\",\n            \"category\": \"\"\n        }\n    ],\n    \"recipes\": [\n        {\n            \"id\": 1,\n            \"name\": \"\",\n            \"description\": \"\",\n            \"history\": \"\",\n            \"category\": \"\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"\",\n            \"description\": \"\",\n            \"history\": \"\",\n            \"category\": \"\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid  gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request retrieves a gastronomy by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Get an invalid gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Update a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. Actualizar más el texto\",\n   \"country\": \"Italia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}"
+					]
+				},
+				"description": "This request updates a gastronomy by a given ID. The API returns a JSON object with the updated restaurant."
+			},
+			"response": [
+				{
+					"name": "Update a museum",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. Actualizar más el texto\",\n   \"country\": \"Italia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\" : 1,\n    \"name\": \"cultura gastronómica italiana\",\n    \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. . Actualizar más el texto\",\n    \"country\": \"Italia\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. Actualizar más el texto\",\n   \"country\": \"Italia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request updates a gastronomy by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Update an invalid gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. Actualizar más el texto\",\n   \"country\": \"Italia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Delete a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}"
+					]
+				},
+				"description": "This request deletes a gastronomy by a given ID. The API returns a 204 code."
+			},
+			"response": [
+				{
+					"name": "Delete a gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "This request deletes a gastronomy by a wrong given ID. The API returns a JSON object with an error."
+			},
+			"response": [
+				{
+					"name": "Delete an invalid gastronomy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"cultura gastronómica italiana\",\n   \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia. Actualizar más el texto\",\n   \"country\": \"Italia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}\n"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "gastronomy_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,1476 @@
+{
+	"info": {
+		"_postman_id": "d99f78cf-d0c0-4327-bfcb-93752e073b56",
+		"name": "Gastronomies-Restaurants",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23051980"
+	},
+	"item": [
+		{
+			"name": "Add a restaurant to a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add a restaurant to a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"cultura gastronómica italiana\",\n    \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"country\": \"Italia\",\n    \"restaurants\": [\n        {\n            \"id\": 1,\n            \"name\": \"Da Quei Matti\",\n            \"city\": \"Roma\",\n            \"country\": \"Italia\",\n            \"michelin\": [\n                {\n                    \"stars\": 1,\n                    \"date\": \"01-08-2020\"\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a restaurant to an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add a restaurant to an invalid gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an invalid restaurant to a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an invalid restaurant to a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a restaurant of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a restaurant of a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Da Quei Matti\",\n    \"city\": \"Roma\",\n    \"country\": \"Italia\",\n    \"michelin\": [\n        {\n            \"stars\": 1,\n            \"date\": \"01-08-2020\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid restaurant of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an invalid restaurant of a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a restaurant of an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a restaurant of an invalid gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a restaurant of a non-associated gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id is not associated to the gastronomy\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"{{restaurant_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a restaurant of a non-associated gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"{{restaurant_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The restaurant with the given id is not associated to the gastronomy\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all restaurants of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all restaurants of a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Da Quei Matti\",\n        \"city\": \"Roma\",\n        \"country\": \"Italia\",\n        \"michelin\": [\n            {\n                \"stars\": 1,\n                \"date\": \"01-08-2020\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all restaurants of an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurants"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all restaurants of an invalid gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurants"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update restaurants of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"name\": \"Andrés Carne de Res\",\n        \"city\": \"Bogotá\",\n        \"country\": \"Colombia\",\n        \"michellinStars\": 3,\n        \"lastMichellinStarDate\": \"2012-02-02\",\n        \"id\": \"{{restaurant_id_2}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update restaurants of a gastronomy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": {{restaurant_id_2}}\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"cultura gastronómica italiana\",\n    \"description\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"country\": \"Italia\",\n    \"restaurants\": [\n        {\n            \"id\": 2,\n            \"name\": \"Da Quei Matti\",\n            \"city\": \"Roma\",\n            \"country\": \"Italia\",\n            \"michelin\": [\n                {\n                    \"stars\": 1,\n                    \"date\": \"01-08-2020\"\n                }\n            ]\n        }\n    ]\n}\n"
+				}
+			]
+		},
+		{
+			"name": "Update restaurants of an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"name\": \"Andrés Carne de Res\",\n        \"city\": \"Bogotá\",\n        \"country\": \"Colombia\",\n        \"michellinStars\": 3,\n        \"lastMichellinStarDate\": \"2012-02-02\",\n        \"id\": \"{{restaurant_id_2}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurants"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update restaurants of an invalid gastronomy",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": {{restaurant_id_2}}\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurants"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update invalid restaurants of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"name\": \"Andrés Carne de Res\",\n        \"city\": \"Bogotá\",\n        \"country\": \"Colombia\",\n        \"michellinStars\": 3,\n        \"lastMichellinStarDate\": \"2012-02-02\",\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update invalid restaurants of a gastronomy",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a restaurant of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a restaurant of a gastronomy",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid restaurant of a gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid restaurant of a gastronomy",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a restaurant of an invalid gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The gastronomy with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurants",
+						"{{restaurant_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a restaurant of an invalid gastronomy",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/00000000-0000-0000-0000-000000000000/restaurants/{{restaurant_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurants",
+								"{{restaurant_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The gastronomy with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a restaurant of a non-associated gastronomy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The restaurant with the given id is not associated to the gastronomy\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gastronomies",
+						"{{gastronomy_id}}",
+						"restaurants",
+						"{{restaurant_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a restaurant of a non-associated gastronomy",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/gastronomies/{{gastronomy_id}}/restaurants/{{restaurant_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gastronomies",
+								"{{gastronomy_id}}",
+								"restaurants",
+								"{{restaurant_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "anim est fugiat do",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The restaurant with the given id is not associated to the gastronomy\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "gastronomy_id",
+			"value": "1"
+		},
+		{
+			"key": "restaurant_id",
+			"value": "1"
+		},
+		{
+			"key": "restaurant_id_2",
+			"value": "2"
+		}
+	]
+}
