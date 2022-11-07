@@ -34,21 +34,6 @@ export class GastronomyRestaurantService {
         return await this.gastronomyRepository.save(gastronomy);
     }
 
-    async add(gastronomyId: string, restaurantId: string): Promise<GastronomyEntity> {
-      const restaurant: RestaurantEntity = await this.restaurantRepository.findOne({where: {id: restaurantId}});
-      if (!restaurant)
-        throw new BusinessLogicException("The restaurant with the given id was not found", BusinessError.NOT_FOUND);
-    
-      const gastronomy: GastronomyEntity = await this.gastronomyRepository.findOne(
-          {where: {id: gastronomyId}, relations: ["restaurants"]}
-          )
-      if (!gastronomy)
-        throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND);
-  
-      gastronomy.restaurants = [...gastronomy.restaurants, restaurant];
-      return await this.gastronomyRepository.save(gastronomy);
-  }
-
     async findRestaurantByGastronomyIdRestaurantId(gastronomyId: string, restaurantId: string): Promise<RestaurantEntity> {
 
         const gastronomy: GastronomyEntity = await this.validate(gastronomyId, restaurantId);
@@ -80,10 +65,6 @@ export class GastronomyRestaurantService {
           throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND);
         await this.cacheManager.set<GastronomyEntity>(gastronomyId, gastronomy);
         return gastronomy.restaurants;
-        let variable = null;
-        if (variable.IsString()) {
-          return null;
-        }
     }
       return cached.restaurants;
   }

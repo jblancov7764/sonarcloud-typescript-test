@@ -55,24 +55,6 @@ export class GastronomyRecipeService {
        return gastronomyRecipe;
     }
 
-    async find(gastronomyId: string, recipeId: string): Promise<RecipeEntity> {
-
-      const recipe: RecipeEntity = await this.recipeRepository.findOne({where: {id: recipeId}});
-     if (!recipe)
-       throw new BusinessLogicException("The recipe with the given id was not found", BusinessError.NOT_FOUND)
-    
-     const gastronomy: GastronomyEntity = await this.gastronomyRepository.findOne({where: {id: gastronomyId}, relations: ["recipes"]});
-     if (!gastronomy)
-       throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND)
-
-     const gastronomyRecipe: RecipeEntity = gastronomy.recipes.find(e => e.id === recipe.id);
-
-     if (!gastronomyRecipe)
-       throw new BusinessLogicException("The recipe with the given id is not associated to the gastronomy", BusinessError.PRECONDITION_FAILED)
-
-     return gastronomyRecipe;
-  }
-
     async findRecipesByGastronomyId(gastronomyId: string): Promise<RecipeEntity[]> {
       const cached: GastronomyEntity = await this.cacheManager.get<GastronomyEntity>(gastronomyId);
       if(!cached){
