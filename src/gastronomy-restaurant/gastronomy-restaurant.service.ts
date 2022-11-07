@@ -61,8 +61,8 @@ export class GastronomyRestaurantService {
         if (!gastronomy)
           throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND)
     
-        for (let i = 0; i < restaurants.length; i++) {
-          const restaurant: RestaurantEntity = await this.restaurantRepository.findOne({where: {id: restaurants[i].id}});
+        for (let rest of restaurants) {
+          const restaurant: RestaurantEntity = await this.restaurantRepository.findOne({where: {id: rest.id}});
           if (!restaurant)
             throw new BusinessLogicException("The restaurant with the given id was not found", BusinessError.NOT_FOUND)
         }
