@@ -9,7 +9,6 @@ import {
   BusinessLogicException
 } from "../shared/errors/business-errors";
 import { Cache } from "cache-manager";
-import { IsString } from 'class-validator';
 
 @Injectable()
 export class GastronomyProductService {
