@@ -68,4 +68,12 @@ export class RestaurantService {
      
         await this.restaurantRepository.remove(restaurant);
     }
+
+    async borrar(id: string) {
+        const restaurant: RestaurantEntity = await this.restaurantRepository.findOne({where:{id}});
+        if (!restaurant)
+          throw new BusinessLogicException("The restaurant with the given id was not found", BusinessError.NOT_FOUND);
+     
+        await this.restaurantRepository.remove(restaurant);
+    }
 }

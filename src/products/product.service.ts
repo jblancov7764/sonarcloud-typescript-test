@@ -46,11 +46,41 @@ export class ProductService {
     return product;
   }
 
+  async buscarUno(id: string, withGastronomy = false): Promise<ProductEntity> {
+    let options: FindOneOptions = { where: { id } };
+    options = withGastronomy ? { ...options, ...{ relations : ['gastronomy'] } } : options;
+    const product: ProductEntity = await this.productsEntityRepository.findOne(options);
+    if (!product)
+      throw new BusinessLogicException(
+        'The product with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    return product;
+  }
+
   async create(productEntity: ProductEntity): Promise<ProductEntity> {
     return await this.productsEntityRepository.save(productEntity);
   }
 
   async update(
+    id: string,
+    productEntity: ProductEntity,
+  ): Promise<ProductEntity> {
+    const oldProduct: ProductEntity =
+      await this.productsEntityRepository.findOne({ where: { id } });
+    if (!oldProduct)
+      throw new BusinessLogicException(
+        'The product with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    Object.assign(oldProduct, productEntity);
+
+    return await this.productsEntityRepository.save(oldProduct);
+  }
+
+  async actualizar(
     id: string,
     productEntity: ProductEntity,
   ): Promise<ProductEntity> {

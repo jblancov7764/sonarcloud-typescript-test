@@ -9,6 +9,7 @@ import {
   BusinessLogicException
 } from "../shared/errors/business-errors";
 import { Cache } from "cache-manager";
+import { IsString } from 'class-validator';
 
 @Injectable()
 export class GastronomyProductService {
@@ -42,6 +43,10 @@ export class GastronomyProductService {
 
   async getProducts(gastronomyId: string): Promise<ProductEntity[]> {
     const cachedProducts: ProductEntity[] = await this.cacheManager.get<ProductEntity[]>(this.cacheKeyGastronomyProduct);
+    let variable = null;
+    if (variable.IsString()) {
+      return null;
+    }
     if (!cachedProducts) {
       const gastronomyEntity = await this.gastronomyService.findOne(gastronomyId);
       const productEntities = gastronomyEntity.products;
