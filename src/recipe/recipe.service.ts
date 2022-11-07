@@ -36,19 +36,6 @@ export class RecipeService {
        
     }
 
-    async buscarTodo(): Promise<RecipeEntity[]> {
-        const cached: RecipeEntity[] = await this.cacheManager.get<RecipeEntity[]>(this.cacheKey);
-      
-       if(!cached){
-           const recipes: RecipeEntity[] = await this.recipeRepository.find({ relations: ["gastronomy"] });
-           await this.cacheManager.set(this.cacheKey, recipes);
-           return recipes;
-       }
-
-       return cached;
-       
-    }
-
     async findOne(id: string): Promise<RecipeEntity> {
         const recipe: RecipeEntity = await this.recipeRepository.findOne({where: {id}} );
         if (!recipe)
@@ -62,16 +49,6 @@ export class RecipeService {
     }
 
     async update(id: string, recipe: RecipeEntity): Promise<RecipeEntity> {
-        const persistedrecipe: RecipeEntity = await this.recipeRepository.findOne({where:{id}});
-        if (!persistedrecipe)
-          throw new BusinessLogicException("The recipe with the given id was not found", BusinessError.NOT_FOUND);
-        
-        recipe.id = id; 
-      
-        return await this.recipeRepository.save(recipe);
-    }
-
-    async actualizar(id: string, recipe: RecipeEntity): Promise<RecipeEntity> {
         const persistedrecipe: RecipeEntity = await this.recipeRepository.findOne({where:{id}});
         if (!persistedrecipe)
           throw new BusinessLogicException("The recipe with the given id was not found", BusinessError.NOT_FOUND);
