@@ -51,6 +51,16 @@ export class RestaurantService {
         return await this.restaurantRepository.save(persistedRestaurant);
     }
 
+    async actualizar(id: string, restaurant: RestaurantEntity): Promise<RestaurantEntity> {
+        const persistedRestaurant: RestaurantEntity = await this.restaurantRepository.findOne({where:{id}});
+        if (!persistedRestaurant)
+          throw new BusinessLogicException("The restaurant with the given id was not found", BusinessError.NOT_FOUND);
+       
+        Object.assign(persistedRestaurant, restaurant);
+       
+        return await this.restaurantRepository.save(persistedRestaurant);
+    }
+
     async delete(id: string) {
         const restaurant: RestaurantEntity = await this.restaurantRepository.findOne({where:{id}});
         if (!restaurant)
